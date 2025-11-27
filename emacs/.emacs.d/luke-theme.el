@@ -3,10 +3,8 @@
 
 (custom-theme-set-faces
  'luke
- '(default ((t (:family "Adwaita Mono" :foundry "UKWN" :width normal :height 109 :weight regular :slant normal :underline nil :overline nil :extend nil :strike-through nil :box nil :inverse-video nil :foreground "#D8DEE9" :background "#2f2f2f" :stipple nil :inherit nil))))
+ '(default ((t ( :slant normal :underline nil :overline nil :extend nil :strike-through nil :box nil :inverse-video nil :foreground "#D8DEE9" :background "#2f343f" :stipple nil :inherit nil))))
  '(cursor ((t (:background "#D8DEE9"))))
- '(fixed-pitch ((t (:family "Monospace"))))
- '(variable-pitch ((t (:family "Adwaita Sans" :foundry "RSMS" :width normal :height 109 :weight regular :slant normal))))
  '(escape-glyph ((t (:foreground "#D08770"))))
  '(homoglyph ((((background dark)) (:foreground "cyan")) (((type pc)) (:foreground "magenta")) (t (:foreground "brown"))))
  '(minibuffer-prompt ((t (:weight bold :foreground "#88C0D0"))))
@@ -45,7 +43,7 @@
  '(button ((t (:box (:line-width (2 . 2) :color "#D8DEE9" :style pressed-button) :foreground "#88C0D0" :background "#2E3440"))))
  '(link ((t (:underline (:color foreground-color :style line :position nil)))))
  '(link-visited ((t (:underline (:color foreground-color :style line :position nil)))))
- '(fringe ((t (:foreground "#D8DEE9" :background "#2f2f2f"))))
+ '(fringe ((t (:foreground "#D8DEE9" :background "#2f343f"))))
  '(header-line ((t (:foreground "#D8DEE9" :background "#434C5E"))))
  '(tooltip ((t (:foreground "#2E3440" :background "#D8DEE9"))))
  '(mode-line ((t (:foreground "#88C0D0" :background "#4C566A"))))
