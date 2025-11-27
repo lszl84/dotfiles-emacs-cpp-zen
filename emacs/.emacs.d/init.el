@@ -10,7 +10,11 @@
   (menu-bar-mode -1)
   (tool-bar-mode -1)
   (scroll-bar-mode -1)
-  (setq-default mode-line-format nil))
+  (setq-default mode-line-format nil)
+
+  ;; Touchpad scrolling
+  (pixel-scroll-mode 1)
+  (pixel-scroll-precision-mode 1))
 
 ;; Theme and appearance setup
 (defun my/setup-theme ()
@@ -24,11 +28,58 @@
   (with-selected-frame frame
     (my/setup-theme)))
 
+(defun my/setup-org ()
+  (use-package org
+    :config
+    (set-face-attribute 'org-ellipsis nil :underline nil)
+    (setq org-ellipsis  " ▼"
+	  org-hide-emphasis-markers t
+	  org-clock-mode-line-total 'today
+          org-duration-format (quote h:mm))
+    (add-hook 'org-mode-hook (lambda ()
+			       (org-indent-mode)
+			       (variable-pitch-mode -1)
+			       (auto-fill-mode 1)))))
+
+(defun my/setup-ai ()
+  (unless (package-installed-p 'gptel)
+    (package-refresh-contents)
+    (package-install 'gptel))
+
+  ;; possible workaround for UTF-8 crash on Debian
+  (setq gptel-use-curl t)
+
+  ;; was: 'deepseek-reasoner
+  (setq gptel-model 'deepseek-chat
+	gptel-backend (gptel-make-deepseek "DeepSeek"
+					   :stream t
+					   :key (with-temp-buffer
+						  (insert-file-contents "~/.deepseek-secret")
+						  (string-trim (buffer-string))))
+	gptel-include-reasoning nil)
+  
+  (defun gpt-go-to-end (start end)
+    (with-current-buffer "*DeepSeek*"
+      (goto-char (point-max))
+      ))
+
+  (add-hook 'gptel-post-response-functions 'gpt-go-to-end))
+
 ;; Main initialization
 (defun my/init ()
   "Main initialization function."
   ;; Setup current frame
   (my/setup-theme)
+  (my/setup-org)
+  (my/setup-ai)
+  
+  (defun ffplay-media-url ()
+  "Open media URL at point with ffplay"
+  (interactive)
+  (let ((url (get-text-property (point) 'help-echo)))
+    (when url
+      (async-shell-command 
+       (format "ffplay -autoexit '%s'" url)))))
   
   (setq-default backup-directory-alist
 		`(("." . "~/.emacs.d/backups")))
@@ -43,3 +94,15 @@
 ;; Run initialization
 (my/init)
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages '(gptel)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
