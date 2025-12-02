@@ -83,6 +83,14 @@
   (global-set-key (kbd "<s-return>")
 		(lambda () (interactive)
 		  (ansi-term "/bin/bash")))
+
+  (add-hook 'term-exec-hook
+          (lambda ()
+            (set-process-sentinel (get-buffer-process (current-buffer))
+                                  (lambda (proc change)
+                                    (when (memq (process-status proc) '(exit signal))
+                                      (kill-buffer (process-buffer proc)))))))
+
   (setq shell-file-name "/bin/bash"))
 
 ;; Main initialization
