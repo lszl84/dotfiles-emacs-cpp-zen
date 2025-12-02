@@ -65,6 +65,26 @@
 
   (add-hook 'gptel-post-response-functions 'gpt-go-to-end))
 
+
+(defun my/setup-cmake ()
+  (global-set-key (kbd "C-c C-r")
+                  (lambda ()
+                    (interactive)
+                    (compile "cmake --build build -j && ./build/main")
+                    (with-current-buffer "*compilation*"
+                      (add-hook 'compilation-finish-functions
+                                (lambda (buf why)
+                                  (when (string-match-p "finished" why)
+                                    (let ((win (get-buffer-window buf)))
+                                      (when win (delete-window win)))))
+                                nil t)))))
+
+(defun my/setup-shell ()
+  (global-set-key (kbd "<s-return>")
+		(lambda () (interactive)
+		  (ansi-term "/bin/bash")))
+  (setq shell-file-name "/bin/bash"))
+
 ;; Main initialization
 (defun my/init ()
   "Main initialization function."
@@ -72,6 +92,8 @@
   (my/setup-theme)
   (my/setup-org)
   (my/setup-ai)
+  (my/setup-cmake)
+  (my/setup-shell)
   
   (defun ffplay-media-url ()
   "Open media URL at point with ffplay"
