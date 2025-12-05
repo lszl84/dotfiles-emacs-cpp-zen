@@ -77,7 +77,22 @@
                                   (when (string-match-p "finished" why)
                                     (let ((win (get-buffer-window buf)))
                                       (when win (delete-window win)))))
-                                nil t)))))
+                                nil t))))
+  (global-set-key (kbd "C-c C-m")
+                  (lambda ()
+                    (interactive)
+                    (compile "cmake -Bbuild -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug")
+                    (with-current-buffer "*compilation*"
+                      (add-hook 'compilation-finish-functions
+                                (lambda (buf why)
+                                  (when (string-match-p "finished" why)
+                                    (let ((win (get-buffer-window buf)))
+                                      (when win (delete-window win)))))
+                                nil t))))
+
+
+
+  )
 
 (defun my/setup-shell ()
   (global-set-key (kbd "<s-return>")
