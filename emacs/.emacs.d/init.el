@@ -120,6 +120,8 @@
 	      ;; clangd formatting is more comprehensive, e.g.
 	      ;; automatically putting spaces around operands etc.
 	      ;; (setq eglot-ignored-server-capabilities '(:documentOnTypeFormattingProvider))
+	      ;; rebinding the default emacs key to do full reformat
+	      (local-set-key (kbd "C-M-\\") 'eglot-format-buffer)
 	      (eglot-ensure)
 	      (local-set-key (kbd "C-c o") 'ff-find-other-file)
 	      ))
