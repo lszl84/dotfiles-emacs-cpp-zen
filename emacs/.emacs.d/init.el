@@ -108,6 +108,24 @@
 
   (setq shell-file-name "/bin/bash"))
 
+
+(defun my/setup-cpp ()
+  (add-hook 'c-mode-common-hook
+	    (lambda ()
+	      (c-set-style "stroustrup")  
+              (setq c-basic-offset 4)
+	      (setq indent-tabs-mode nil)
+	      ;; we don't disable it, instead use ~/.clang-format
+	      ;; with a similar setup as emacs' "stroustrup"
+	      ;; clangd formatting is more comprehensive, e.g.
+	      ;; automatically putting spaces around operands etc.
+	      ;; (setq eglot-ignored-server-capabilities '(:documentOnTypeFormattingProvider))
+	      (eglot-ensure)
+	      (local-set-key (kbd "C-c o") 'ff-find-other-file)
+	      ))
+
+  (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode)))
+
 ;; Main initialization
 (defun my/init ()
   "Main initialization function."
@@ -117,7 +135,8 @@
   (my/setup-ai)
   (my/setup-cmake)
   (my/setup-shell)
-  
+  (my/setup-cpp)
+
   (defun ffplay-media-url ()
   "Open media URL at point with ffplay"
   (interactive)
