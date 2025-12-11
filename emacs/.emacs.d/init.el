@@ -12,7 +12,6 @@
   (scroll-bar-mode -1)
   (setq-default mode-line-format nil)
 
-  ;; Touchpad scrolling
   (pixel-scroll-mode 1)
   (pixel-scroll-precision-mode 1))
 
