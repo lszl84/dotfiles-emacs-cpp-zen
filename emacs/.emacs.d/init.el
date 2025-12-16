@@ -26,6 +26,10 @@
 
   ;;  (set-face-background 'fringe "#242424")
 ;;  (set-face-background 'fringe "black")
+
+
+  (set-frame-parameter (selected-frame) 'alpha '(93 . 93))
+  (add-to-list 'default-frame-alist '(alpha . (93 . 93)))
   (pixel-scroll-mode 1)
   (pixel-scroll-precision-mode 1))
 
