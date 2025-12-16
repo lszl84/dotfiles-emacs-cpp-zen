@@ -12,6 +12,7 @@
   (scroll-bar-mode -1)
   (setq-default mode-line-format nil)
 
+;;  (set-face-background 'fringe "black")
   (pixel-scroll-mode 1)
   (pixel-scroll-precision-mode 1))
 
