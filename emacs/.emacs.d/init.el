@@ -4,6 +4,18 @@
                          ("gnu" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
 
+
+
+;; doric-themes
+(unless (package-installed-p 'doric-themes)
+  (package-refresh-contents)
+  (package-install 'doric-themes))
+
+(use-package doric-themes
+  :ensure t
+  :init
+)
+
 ;; Basic UI configuration
 (defun my/setup-ui ()
   "Configure UI elements for current frame."
@@ -12,14 +24,17 @@
   (scroll-bar-mode -1)
   (setq-default mode-line-format nil)
 
-  (set-face-background 'fringe "#242424")
+  ;;  (set-face-background 'fringe "#242424")
+;;  (set-face-background 'fringe "black")
   (pixel-scroll-mode 1)
   (pixel-scroll-precision-mode 1))
 
 ;; Theme and appearance setup
 (defun my/setup-theme ()
   "Configure theme and colors."
-  (load-theme 'wombat t)
+ ;; (load-theme 'modus-vivendi t)
+
+  (doric-themes-select 'doric-obsidian)
   (my/setup-ui))
 
 ;; Server/client frame handling
