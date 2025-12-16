@@ -12,14 +12,14 @@
   (scroll-bar-mode -1)
   (setq-default mode-line-format nil)
 
-;;  (set-face-background 'fringe "black")
+  (set-face-background 'fringe "#242424")
   (pixel-scroll-mode 1)
   (pixel-scroll-precision-mode 1))
 
 ;; Theme and appearance setup
 (defun my/setup-theme ()
   "Configure theme and colors."
-  (load-theme 'luke t)
+  (load-theme 'wombat t)
   (my/setup-ui))
 
 ;; Server/client frame handling
@@ -112,21 +112,22 @@
 (defun my/setup-cpp ()
   (add-hook 'c-mode-common-hook
 	    (lambda ()
-	      (c-set-style "stroustrup")  
-              (setq c-basic-offset 4)
-	      (setq indent-tabs-mode nil)
-	      ;; we don't disable it, instead use ~/.clang-format
-	      ;; with a similar setup as emacs' "stroustrup"
-	      ;; clangd formatting is more comprehensive, e.g.
-	      ;; automatically putting spaces around operands etc.
-	      ;; (setq eglot-ignored-server-capabilities '(:documentOnTypeFormattingProvider))
-	      ;; rebinding the default emacs key to do full reformat
-	      (local-set-key (kbd "C-M-\\") 'eglot-format-buffer)
-	      (eglot-ensure)
+	      ;; (c-set-style "stroustrup")  
+              ;; (setq c-basic-offset 4)
+	      ;; (setq indent-tabs-mode nil)
+	      ;; ;; we don't disable it, instead use ~/.clang-format
+	      ;; ;; with a similar setup as emacs' "stroustrup"
+	      ;; ;; clangd formatting is more comprehensive, e.g.
+	      ;; ;; automatically putting spaces around operands etc.
+	      ;; ;; (setq eglot-ignored-server-capabilities '(:documentOnTypeFormattingProvider))
+	      ;; ;; rebinding the default emacs key to do full reformat
+	      ;; (local-set-key (kbd "C-M-\\") 'eglot-format-buffer)
+	      ;; (eglot-ensure)
 	      (local-set-key (kbd "C-c o") 'ff-find-other-file)
 	      ))
 
-  (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode)))
+  ;;(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+  )
 
 ;; Main initialization
 (defun my/init ()
