@@ -32,6 +32,9 @@
   ;;  (set-face-background 'fringe "#242424")
 ;;  (set-face-background 'fringe "black")
 
+  (set-face-attribute 'fixed-pitch nil
+                      :family (face-attribute 'default :family)
+                      :height (face-attribute 'default :height))
 
   (set-frame-parameter (selected-frame) 'alpha '(93 . 93))
   (add-to-list 'default-frame-alist '(alpha . (93 . 93)))
