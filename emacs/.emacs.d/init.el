@@ -36,8 +36,8 @@
                       :family (face-attribute 'default :family)
                       :height (face-attribute 'default :height))
 
-  (set-frame-parameter (selected-frame) 'alpha '(93 . 93))
-  (add-to-list 'default-frame-alist '(alpha . (93 . 93)))
+  (set-frame-parameter (selected-frame) 'alpha '(90 . 90))
+  (add-to-list 'default-frame-alist '(alpha . (90 . 90)))
   (pixel-scroll-mode 1)
   (pixel-scroll-precision-mode 1))
 
