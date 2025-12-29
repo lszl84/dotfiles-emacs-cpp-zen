@@ -3,7 +3,7 @@
 
 (custom-theme-set-faces
  'luke
- '(default ((t ( :slant normal :underline nil :overline nil :extend nil :strike-through nil :box nil :inverse-video nil :foreground "#D8DEE9" :background "#222226" :stipple nil :inherit nil))))
+ '(default ((t ( :slant normal :underline nil :overline nil :extend nil :strike-through nil :box nil :inverse-video nil :foreground "#D8DEE9" :background "#212121" :stipple nil :inherit nil))))
  '(window-divider ((t (:foreground "#444444"))))
  '(vertical-border ((t (:foreground "#444444"))))
  '(cursor ((t (:background "#D8DEE9"))))
@@ -45,7 +45,7 @@
  '(button ((t (:box (:line-width (2 . 2) :color "#D8DEE9" :style pressed-button) :foreground "#88C0D0" :background "#2E3440"))))
  '(link ((t (:underline (:color foreground-color :style line :position nil)))))
  '(link-visited ((t (:underline (:color foreground-color :style line :position nil)))))
- '(fringe ((t (:foreground "#D8DEE9" :background "#222226"))))
+ '(fringe ((t (:foreground "#D8DEE9" :background "#212121"))))
  '(header-line ((t (:foreground "#D8DEE9" :background "#434C5E"))))
  '(tooltip ((t (:foreground "#2E3440" :background "#D8DEE9"))))
  '(mode-line ((t (:foreground "#88C0D0" :background "#4C566A"))))
